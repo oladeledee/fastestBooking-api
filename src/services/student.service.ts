@@ -12,10 +12,7 @@ export class StudentService{
    constructor(
        @InjectModel('Student') private studentModel: Model <Student>,
    ){}
-
-   
-   async insertStudent(
-       
+   async insertStudent(       
     firstName:string,
     lastName:string,
     email:string,
@@ -45,10 +42,7 @@ export class StudentService{
            const result= await newStudent.save();
            console.log(result);
           return result.id as string;
-            
-        } 
-         
- 
+        }
 
  async getStudent(){
      const students = await this.studentModel.find();
@@ -65,10 +59,7 @@ export class StudentService{
  }
  
 async  getOneStudent(studentId: string){
-   
-     
    const student =  await this.findStudent(studentId);
-    
      return {
         id:student.id,
          firstName:student.firstName,
@@ -87,10 +78,8 @@ async  getOneStudent(studentId: string){
      userName: string,
      cgpa: number, 
        ){
-       
          const student =  await this.findStudent(studentId);
-         const updatedstudent =student;
-               
+         const updatedstudent =student;      
             if(firstName){
                 updatedstudent.firstName=firstName;
             }
@@ -109,28 +98,25 @@ async  getOneStudent(studentId: string){
             return updatedstudent.save();
        }
 
-
           async deleteStudent(studeId: string){
               const student = await this.findStudent(studeId);
               if(student){
                   await this.studentModel.deleteOne(student);
-              }
-              
+              }              
               return "student details deleted ";
            }
 
-        async findStudent(id:string){
-     let student
-     try {
+     async findStudent(id:string){
+            let student
+        try {
           student =  await this.studentModel.findById(id);
-     
      } catch (error) {
         console.error(error.message);
         throw new NotFoundException('Internal server error.');
      }
-     if(!student){
+        if(!student){
          throw new NotFoundException('could not find student with the given the id.');
      }
-     return student;
+        return student;
  }
 }
