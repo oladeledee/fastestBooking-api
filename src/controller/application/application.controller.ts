@@ -8,9 +8,7 @@ import { ApplicationService } from '../../services/application.service';
 
 export class ApplicationController {
     
-    constructor( 
-                private  applicationService : ApplicationService,
-        ){}
+    constructor(private  applicationService : ApplicationService,){}
   
  @Post()
      async create(
