@@ -12,7 +12,6 @@ export class ApplicationController {
                 private  applicationService : ApplicationService,
         ){}
   
-    
  @Post()
      async create(
         @Body('program')applicationProgam:string,
