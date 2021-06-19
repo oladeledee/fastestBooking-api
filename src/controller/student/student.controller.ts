@@ -21,30 +21,23 @@ export class StudentController{
         StudentlastName,
         Studentemail,
         StudentuserName,
-        Studentcgpa);
-      
+        Studentcgpa
+       );
        return genId;
-    }
-       
-
+        }
 
 @Get()
  async find(){
-
     const students = await this.studentservice.getStudent();
-
     return students;
-
 };
 
 @Get(':id')
-getById(@Param('id') studeId: string,){
+  getById(@Param('id') studeId: string,){
     return this.studentservice.getOneStudent(studeId);
-
 }
 
 @Patch(':id')
-
     async update(
         @Param('id') StudentId: string,
         @Body('firstName')studentfirstName:string,
@@ -69,6 +62,5 @@ getById(@Param('id') studeId: string,){
     async removeProduct(@Param('id') studentId: string){
          await  this.studentservice.deleteStudent(studentId);
           return('product deleted');
-
      }
 }
