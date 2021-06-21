@@ -1,24 +1,27 @@
 /* eslint-disable prettier/prettier */
 import * as mongoose from 'mongoose';
+import {  Student } from './student.model';
 
+ @Schema()
+ export class Application{
 
+   @Prop({
+      type:Student,
+      ref:() => Student
+   })
+    student:Student;
 
- export const ApplicationSchema = new mongoose.Schema({
-    student:
-           {  type:mongoose.Schema.Types.ObjectId,
-        ref:"Student",    
-           } ,
-    program: {
-          type:String,
-          required:true
-         },
-    semester:{
-        type:String,
-        required:true
-        },  
-},
-     {timestamps:true}
-)
+    @Prop({required : true})
+    program:string;
+
+    @Prop({required : true})
+    semester:string;
+
+    @Prop()
+    timestamps:true
+ }
+
+export  const ApplicationSchema = SchemaFactory.createForClass(Application);
 
 export  interface Application extends mongoose.Document {
    program:string;
