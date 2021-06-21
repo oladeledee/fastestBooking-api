@@ -1,14 +1,38 @@
 /* eslint-disable prettier/prettier */
 import * as mongoose from 'mongoose';
 import * as Joi from 'joi';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
-export const StudentSchema = new mongoose.Schema({
-    firstName: {type:String, required: true},
-    lastName: { type:String, required: true},
-    email : { type: String,  required: true, unique:true},
-    userName : { type: String,  required: true, unique:true},
-    cgpa : { type:Number,  required: true},
-})
+@Schema()
+
+export  class Student{
+    @Prop({
+        required:true
+    })
+    firstName: string;
+
+    @Prop({
+        required:true
+    })
+    lastName: string;
+
+    @Prop({
+        required:true
+    })
+    email: string;
+
+    @Prop({
+        required:true
+    })
+    userName: string;
+
+    @Prop({
+        required:true
+    })
+    cgpa: number;
+}
+
+export const StudentSchema=  SchemaFactory.createForClass(Student);
 
 export  interface Student extends mongoose.Document {
           id:string;
